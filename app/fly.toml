@@ -1,0 +1,19 @@
+app = "gesformacion-webhook"  # Este nombre debe coincidir con el nombre de la app que pusiste en Fly.io
+
+[build]
+  builder = "heroku/buildpacks:20"  # O usa Docker si lo tienes
+
+[env]
+  PORT = "1337"
+
+[[services]]
+  internal_port = 1337
+  protocol = "tcp"
+
+  [[services.ports]]
+    handlers = ["http"]
+    port = 80
+
+  [[services.ports]]
+    handlers = ["tls", "http"]
+    port = 443
